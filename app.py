@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
-import _sysconfigdata_powerpc64le_conda_cos7_linux_gnu
+import scraping
 
 app = Flask(__name__)
 
@@ -19,8 +19,6 @@ def scrape():
     mars_data = scraping.scrape_all()
     mars.update_one({}, {"$set":mars_data}, upsert=True)
     return redirect('/', code=302)
-
-.update_one(query_parameter, {"$set": data}, options)
 
 if __name__ == "__main__":
     app.run()
